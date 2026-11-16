@@ -1,0 +1,7 @@
+location,time,weather,vehicle_count,road_type,label
+Downtown,8,Clear,120,Main,High
+Downtown,14,Cloudy,70,Main,Medium
+Uptown,22,Rain,40,Local,Low
+Industrial,9,Clear,140,Highway,High
+Suburb,16,Sunny,55,Local,Medium
+Suburb,20,Clear,25,Local,Low

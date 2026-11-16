@@ -1,0 +1,5 @@
+co2,pm25,temperature,humidity,traffic_level,label
+420,18,30,50,High,Poor
+300,10,27,60,Medium,Moderate
+250,6,24,55,Low,Good
+500,35,32,45,High,Dangerous

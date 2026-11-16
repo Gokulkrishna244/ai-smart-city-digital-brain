@@ -1,0 +1,5 @@
+area,population,temperature,time,previous_usage,label
+Downtown,9000,34,18,110,High
+Suburb,4000,28,10,60,Normal
+Industrial,6000,36,20,140,Critical
+Uptown,7000,31,15,85,High
