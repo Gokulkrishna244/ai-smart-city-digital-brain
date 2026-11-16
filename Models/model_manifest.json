@@ -1,0 +1,47 @@
+{
+  "version": 2,
+  "dataset_fingerprints": {
+    "traffic": "c67f05b771fc6c61a7e495e54e118b8719a858ce3b4ad621a8ba2b32b614e8ad",
+    "pollution": "6418f261ca087b0c718038152fb8896fde166c8c50337320c6a40f72d2289c5c",
+    "energy": "2574dcde2e79500b8a6bc66cce8111aa21265e5c89bc6d92a392513608532f5a"
+  },
+  "models": {
+    "traffic": {
+      "training_rows": 6,
+      "class_counts": {
+        "High": 2,
+        "Medium": 2,
+        "Low": 2
+      },
+      "validation": {
+        "status": "insufficient_data",
+        "message": "Validation withheld: at least 5 examples per class are needed for stratified 5-fold validation."
+      }
+    },
+    "pollution": {
+      "training_rows": 4,
+      "class_counts": {
+        "Poor": 1,
+        "Moderate": 1,
+        "Good": 1,
+        "Dangerous": 1
+      },
+      "validation": {
+        "status": "insufficient_data",
+        "message": "Validation withheld: at least 5 examples per class are needed for stratified 5-fold validation."
+      }
+    },
+    "energy": {
+      "training_rows": 4,
+      "class_counts": {
+        "High": 2,
+        "Normal": 1,
+        "Critical": 1
+      },
+      "validation": {
+        "status": "insufficient_data",
+        "message": "Validation withheld: at least 5 examples per class are needed for stratified 5-fold validation."
+      }
+    }
+  }
+}
