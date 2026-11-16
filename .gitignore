@@ -1,0 +1,36 @@
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+
+# Runtime data and generated artifacts
+Models/smart_city.db
+*.log
+*.err
+*.out
+*.pdf
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+
+# Editors and operating systems
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Frontend dependencies and caches
+node_modules/
+.cache/
+dist/
+coverage/
+
+# Local agent metadata
+.agents/
+.codex/
