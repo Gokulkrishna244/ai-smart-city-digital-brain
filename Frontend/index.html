@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#07111f" />
+  <title>UrbanOS | Smart City Command Center</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#overview" aria-label="UrbanOS dashboard home">
+        <span class="brand-mark"><span></span></span>
+        <span><strong>URBAN</strong><em>OS</em></span>
+      </a>
+
+      <nav class="side-nav" aria-label="Primary navigation">
+        <p class="nav-label">Command center</p>
+        <a class="nav-link active" href="#overview"><span class="nav-icon">⌂</span><span>Overview</span></a>
+        <a class="nav-link" href="#city-pulse"><span class="nav-icon">◎</span><span>City Pulse</span></a>
+        <a class="nav-link" href="#state-registry"><span class="nav-icon">▦</span><span>States & Cities</span></a>
+        <a class="nav-link" href="#predictions"><span class="nav-icon">⌁</span><span>Live Operations</span></a>
+        <a class="nav-link" href="#capstone"><span class="nav-icon">✧</span><span>Capstone</span></a>
+        <a class="nav-link" href="#intelligence"><span class="nav-icon">▥</span><span>Intelligence</span></a>
+        <a class="nav-link" href="#advanced-intelligence"><span class="nav-icon">CI</span><span>City Intelligence</span></a>
+        <p class="nav-label">Smart city modules</p>
+        <a class="nav-link" href="#module-traffic"><span class="nav-icon">T</span><span>Traffic Intelligence</span></a>
+        <a class="nav-link" href="#module-air"><span class="nav-icon">A</span><span>Air Quality</span></a>
+        <a class="nav-link" href="#module-energy"><span class="nav-icon">E</span><span>Energy Management</span></a>
+        <a class="nav-link" href="#module-water"><span class="nav-icon">W</span><span>Water Management</span></a>
+        <a class="nav-link" href="#module-parking"><span class="nav-icon">P</span><span>Smart Parking</span></a>
+        <a class="nav-link" href="#module-disaster"><span class="nav-icon">D</span><span>Disaster Management</span></a>
+        <a class="nav-link" href="#module-waste"><span class="nav-icon">W</span><span>Waste Management</span></a>
+        <a class="nav-link" href="#module-transport"><span class="nav-icon">PT</span><span>Public Transport</span></a>
+        <a class="nav-link" href="#module-roads"><span class="nav-icon">RI</span><span>Road Infrastructure</span></a>
+        <a class="nav-link" href="#module-safety"><span class="nav-icon">PS</span><span>Public Safety</span></a>
+        <p class="nav-label">AI Intelligence</p>
+        <a class="nav-link" href="#ask-urbanos"><span class="nav-icon">AU</span><span>Ask UrbanOS</span></a>
+        <a class="nav-link" href="#prediction-engine"><span class="nav-icon">PE</span><span>AI Prediction Engine</span></a>
+        <a class="nav-link" href="#anomaly-detection"><span class="nav-icon">AD</span><span>Anomaly Detection</span></a>
+        <a class="nav-link" href="#root-cause"><span class="nav-icon">RC</span><span>Root Cause Analysis</span></a>
+        <a class="nav-link" href="#recommendation-agent"><span class="nav-icon">RA</span><span>AI Recommendation Agent</span></a>
+        <a class="nav-link" href="#digital-twin"><span class="nav-icon">DT</span><span>Digital Twin Simulator</span></a>
+        <a class="nav-link" href="#twin-city-3d"><span class="nav-icon">3D</span><span>3D Digital Twin</span></a>
+        <a class="nav-link" href="#predictive-maintenance"><span class="nav-icon">PM</span><span>Predictive Maintenance</span></a>
+        <a class="nav-link" href="#noise-monitoring"><span class="nav-icon">NM</span><span>Noise Monitoring</span></a>
+        <a class="nav-link" href="#sustainability-score"><span class="nav-icon">SS</span><span>Sustainability Score</span></a>
+        <p class="nav-label">Citizen Services</p>
+        <a class="nav-link" href="#grievance-portal"><span class="nav-icon">GP</span><span>Grievance Portal</span></a>
+        <a class="nav-link" href="#citizen-alerts"><span class="nav-icon">CA</span><span>Citizen Alerts</span></a>
+        <a class="nav-link" href="#public-services"><span class="nav-icon">CS</span><span>Public Services</span></a>
+        <a class="nav-link" href="#ask-urbanos"><span class="nav-icon">VA</span><span>Voice Assistant</span></a>
+        <p class="nav-label">Operations</p>
+        <a class="nav-link" href="#alerts"><span class="nav-icon">△</span><span>City Alerts</span><span class="nav-count" id="navAlertCount">--</span></a>
+        <a class="nav-link" href="#history"><span class="nav-icon">↺</span><span>Activity Log</span></a>
+        <a class="nav-link" href="#emergency-response"><span class="nav-icon">ER</span><span>Emergency Response</span></a>
+        <a class="nav-link" href="#capstone"><span class="nav-icon">R</span><span>Forensic Reports</span></a>
+        <p class="nav-label">Reports & Administration</p>
+        <a class="nav-link" href="#city-analytics"><span class="nav-icon">CA</span><span>City Analytics</span></a>
+        <a class="nav-link" href="#performance-ranking"><span class="nav-icon">PR</span><span>Performance Ranking</span></a>
+        <a class="nav-link" href="#history"><span class="nav-icon">AL</span><span>Activity Logs</span></a>
+        <a class="nav-link" href="#emergency-response"><span class="nav-icon">IR</span><span>Incident Reports</span></a>
+        <a class="nav-link" href="#capstone"><span class="nav-icon">FR</span><span>Forensic Reports</span></a>
+        <p class="nav-label">System</p>
+        <a class="nav-link" href="#system-status"><span class="nav-icon">S</span><span>Settings</span></a>
+        <a class="nav-link" href="#system-status"><span class="nav-icon">U</span><span>User Management</span></a>
+      </nav>
+
+      <div class="sidebar-foot">
+        <div class="mini-status"><span class="pulse-dot" id="sidebarStatusDot"></span><div><strong id="sidebarSystemLabel">Backend</strong><small id="sidebarSystemStatus">Checking</small></div></div>
+        <p>UrbanOS v2.4.0</p>
+      </div>
+    </aside>
+
+    <div class="workspace">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="icon-button menu-button" id="menuButton" type="button" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+          <div>
+            <p class="breadcrumb">Operations / <span>Overview</span></p>
+            <h1>City Command Center</h1>
+          </div>
+        </div>
+        <div class="topbar-actions">
+          <div class="live-chip" id="connectionBadge"><span class="pulse-dot"></span> Checking backend</div>
+          <div class="clock" aria-label="Current time"><strong id="liveTime">--:--</strong><span id="liveDate">Loading date</span></div>
+          <button id="themeToggle" class="icon-button" type="button" aria-label="Toggle color theme">☾</button>
+          <button class="avatar" type="button" aria-label="Operator profile">OC</button>
+        </div>
+      </header>
+
+      <main class="dashboard" id="overview">
+        <section class="welcome-row">
+          <div class="welcome-copy">
+            <p class="eyebrow">National urban intelligence grid</p>
+            <h2>Good <span id="timeGreeting">morning</span>.<br /><em>India is in view.</em></h2>
+            <p>One operating picture for mobility, environment, utilities, safety, and AI-assisted city decisions.</p>
+            <div class="hero-chips"><span>30 connected cities</span><span>150 monitored places</span><span>6 intelligence modules</span></div>
+          </div>
+          <div class="page-actions">
+            <button id="healthButton" class="button button-ghost" type="button"><span>↻</span> Run diagnostics</button>
+            <button id="statsButton" class="button button-primary" type="button"><span>✦</span> Refresh intelligence</button>
+          </div>
+          <div class="hero-orbit" aria-hidden="true"><i></i><i></i><i></i><strong>URBAN<br />CORE</strong></div>
+        </section>
+
+        <section class="kpi-grid" aria-label="Key city metrics">
+          <article class="kpi-card accent-blue reveal" style="--delay: 0ms">
+            <div class="kpi-top"><span class="kpi-icon">⌁</span></div>
+            <p>Network health</p><div class="kpi-value"><strong id="networkHealth" class="counter">--</strong><span>%</span></div>
+            <div class="spark-bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <small><span class="status-dot green"></span><span id="apiMetric">Checking API</span></small>
+          </article>
+          <article class="kpi-card accent-cyan reveal" style="--delay: 90ms">
+            <div class="kpi-top"><span class="kpi-icon">◎</span></div>
+            <p>Connected zones</p><div class="kpi-value"><strong id="connectedZones" class="counter">--</strong><span>zones</span></div>
+            <small>Reported by the current data source</small>
+          </article>
+          <article class="kpi-card accent-amber reveal" style="--delay: 180ms">
+            <div class="kpi-top"><span class="kpi-icon">△</span></div>
+            <p>Active incidents</p><div class="kpi-value"><strong id="activeIncidents" class="counter">--</strong><span>events</span></div>
+            <div class="incident-dots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <small><span class="status-dot amber"></span>Incident database</small>
+          </article>
+          <article class="kpi-card accent-violet reveal" style="--delay: 270ms">
+            <div class="kpi-top"><span class="kpi-icon">✦</span></div>
+            <p>AI decisions today</p><div class="kpi-value"><strong id="aiDecisions" class="counter">--</strong><span>actions</span></div>
+            <small>Recorded prediction history</small>
+          </article>
+        </section>
+
+        <section class="command-grid" id="city-pulse">
+          <article class="panel map-panel">
+            <div class="panel-head"><div><p class="eyebrow">City topology</p><h3>City & Area Network</h3></div><div class="panel-tools"><span class="status-label" id="mapFeedStatus">Waiting for data</span><button class="mini-button" type="button">•••</button></div></div>
+            <div class="map-view">
+              <div id="realCityMap" class="real-city-map" aria-label="Smart city map of India"></div>
+              <div class="map-overlay">
+                <strong id="mapUpdatedAt">Waiting for backend</strong>
+                <span id="mapSummary">Connected cities and areas</span>
+              </div>
+              <div class="map-legend"><span><i class="green"></i>Stable</span><span><i class="amber"></i>Elevated</span><span><i class="red"></i>Critical</span></div>
+            </div>
+          </article>
+
+          <article class="panel city-panel">
+            <div class="panel-head"><div><p class="eyebrow">Regional index</p><h3>City Pulse</h3></div><span class="section-badge" id="pulseDataSource">Waiting for data</span></div>
+            <div id="metroCitiesGrid" class="metro-grid"></div>
+          </article>
+        </section>
+
+        <section class="data-explorer" id="data-explorer">
+          <div class="section-heading">
+            <div><p class="eyebrow">Complete dataset</p><h2>Road & Air Data Explorer</h2></div>
+            <label class="search-field">Search state, city, area, or air value<input id="dataSearchInput" type="search" placeholder="Maharashtra, Pune, Rohini, Poor, 08:00..." /></label>
+          </div>
+          <div class="data-summary" id="dataExplorerSummary">
+            <span>Loading all road and air records...</span>
+          </div>
+          <article class="panel state-registry-panel" id="state-registry">
+            <div class="panel-head">
+              <div><p class="eyebrow">India coverage</p><h3>All States, Union Territories & Cities</h3></div>
+              <span class="section-badge" id="stateRegistryCount">Loading...</span>
+            </div>
+            <div id="stateRegistryGrid" class="state-registry-grid" aria-live="polite">
+              <div class="registry-empty">Loading state and city data...</div>
+            </div>
+          </article>
+          <article class="outcome-card" id="dataOutcomeCard">
+            <div>
+              <p class="eyebrow">Dataset-based outcome</p>
+              <h3 id="outcomeHeadline">Waiting for search input</h3>
+              <p id="outcomeAdvice">Enter a location, air condition, road type, time, PM2.5, or CO2 value to see the operational result.</p>
+            </div>
+            <div class="outcome-score">
+              <span>Risk</span>
+              <strong id="outcomeRisk">--</strong>
+            </div>
+            <p id="outcomeAction">The result will show the simplest air quality meaning and what action should be taken.</p>
+          </article>
+          <div class="data-grid">
+            <article class="panel data-panel">
+              <div class="panel-head"><div><p class="eyebrow">All roads</p><h3>Road Conditions</h3></div><span class="section-badge" id="roadRecordCount">0 rows</span></div>
+              <div class="table-wrap data-table-wrap"><table id="roadDataTable"><thead><tr><th>Location</th><th>Time</th><th>Road</th><th>Weather</th><th>Vehicles</th><th>Traffic</th></tr></thead><tbody><tr><td colspan="6">Loading roads...</td></tr></tbody></table></div>
+            </article>
+            <article class="panel data-panel">
+              <div class="panel-head"><div><p class="eyebrow">All air</p><h3>Air Quality Records</h3></div><span class="section-badge" id="airRecordCount">0 rows</span></div>
+              <div class="table-wrap data-table-wrap"><table id="airDataTable"><thead><tr><th>Location</th><th>Time</th><th>PM2.5</th><th>CO2</th><th>Humidity</th><th>Quality</th></tr></thead><tbody><tr><td colspan="6">Loading air data...</td></tr></tbody></table></div>
+            </article>
+          </div>
+          <article class="panel timeline-panel">
+            <div class="panel-head"><div><p class="eyebrow">Simple time view</p><h3>Air Quality by Hour</h3></div><span class="section-badge">24 hour pattern</span></div>
+            <div id="airTimeline" class="air-timeline"></div>
+          </article>
+        </section>
+
+        <section class="prediction-section" id="predictions">
+          <div class="section-heading"><div><p class="eyebrow">Dataset operations</p><h2>Search & Predictions</h2></div><p>Search the included city data or submit values to the prediction models.</p></div>
+          <article class="panel realtime-search-panel">
+            <label class="search-field">Live map place search<input id="realtimeSearchInput" type="search" placeholder="Try a locality, village, street, taluk, or postcode..." /></label>
+            <label>Administrative scope<select id="mapSearchScope"><option value="bengaluru_all">Bengaluru Urban + Rural</option><option value="bengaluru_urban">Bengaluru Urban</option><option value="bengaluru_rural">Bengaluru Rural</option><option value="india">All India</option></select></label>
+            <button id="realtimeSearchButton" class="button button-primary" type="button">Search live map</button>
+            <div id="realtimeSearchResult" class="result-box" aria-live="polite">Enter a location or air condition to update the outcome below.</div>
+          </article>
+          <div class="forms-grid">
+            <article class="panel prediction-card traffic-card">
+              <div class="prediction-title"><span>01</span><div><h3>Traffic Flow</h3><p>Dataset prediction</p></div><i>⌁</i></div>
+              <div class="live-model-strip traffic-strip" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+              <div class="model-live-stats">
+                <div><span>Area</span><strong id="trafficLiveArea">Delhi</strong></div>
+                <div><span>Vehicles</span><strong id="trafficLiveVehicles">120</strong></div>
+                <div><span>Traffic</span><strong id="trafficLiveLevel">--</strong></div>
+              </div>
+              <form id="trafficForm" class="live-auto-form"><label>Location<input name="location" value="Delhi" required /></label><div class="field-row"><label>Hour<input name="time" type="number" min="0" max="23" value="8" required /></label><label>Vehicles<input name="vehicle_count" type="number" value="120" required /></label></div><div class="field-row"><label>Weather<input name="weather" value="Clear" required /></label><label>Road type<input name="road_type" value="Main" required /></label></div><p class="auto-source">Example inputs from the city dataset</p><button type="submit" class="button button-model">Analyze traffic <span>→</span></button></form>
+              <div id="trafficResult" class="result-box" aria-live="polite">Example inputs ready for prediction.</div>
+            </article>
+            <article class="panel prediction-card pollution-card">
+              <div class="prediction-title"><span>02</span><div><h3>Air Quality</h3><p>Dataset prediction</p></div><i>◌</i></div>
+              <div class="air-orbit" aria-hidden="true"><span></span><span></span><span></span><strong>PM</strong></div>
+              <div class="model-live-stats">
+                <div><span>PM2.5</span><strong id="airLivePm25">18</strong></div>
+                <div><span>CO2</span><strong id="airLiveCo2">420</strong></div>
+                <div><span>Air</span><strong id="airLiveQuality">Watch</strong></div>
+              </div>
+              <form id="pollutionForm" class="live-auto-form"><div class="field-row"><label>CO₂ ppm<input name="co2" type="number" value="420" required /></label><label>PM2.5<input name="pm25" type="number" value="18" required /></label></div><div class="field-row"><label>Temperature<input name="temperature" type="number" value="30" required /></label><label>Humidity %<input name="humidity" type="number" value="50" required /></label></div><label>Traffic level<input name="traffic_level" value="High" required /></label><p class="auto-source">Example inputs from the pollution dataset</p><button type="submit" class="button button-model">Analyze air quality <span>→</span></button></form>
+              <div id="pollutionResult" class="result-box" aria-live="polite">Example inputs ready for prediction.</div>
+            </article>
+            <article class="panel prediction-card energy-card">
+              <div class="prediction-title"><span>03</span><div><h3>Energy Demand</h3><p>Dataset prediction</p></div><i>ϟ</i></div>
+              <div class="energy-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+              <div class="model-live-stats">
+                <div><span>Area</span><strong id="energyLiveArea">Mumbai</strong></div>
+                <div><span>Usage</span><strong id="energyLiveUsage">110</strong></div>
+                <div><span>Load</span><strong id="energyLiveLoad">High</strong></div>
+              </div>
+              <form id="energyForm" class="live-auto-form"><label>Area<input name="area" value="Mumbai" required /></label><div class="field-row"><label>Population<input name="population" type="number" value="9000" required /></label><label>Temperature<input name="temperature" type="number" value="34" required /></label></div><div class="field-row"><label>Hour<input name="time" type="number" min="0" max="23" value="18" required /></label><label>Previous usage<input name="previous_usage" type="number" value="110" required /></label></div><p class="auto-source">Example inputs from the energy dataset</p><button type="submit" class="button button-model">Analyze energy <span>→</span></button></form>
+              <div id="energyResult" class="result-box" aria-live="polite">Example inputs ready for prediction.</div>
+            </article>
+          </div>
+        </section>
+
+        <section class="advanced-section" id="advanced-intelligence">
+          <div class="section-heading"><div><p class="eyebrow">Advanced intelligence</p><h2>UrbanOS Decision Studio</h2></div><p>Dataset-derived forecasts and scenario tools. Nothing below is represented as a municipal live feed.</p></div>
+          <div class="advanced-grid">
+            <article class="panel assistant-panel" id="ask-urbanos">
+              <div class="panel-head"><div><p class="eyebrow">AI city assistant</p><h3>Ask UrbanOS</h3></div><span class="section-badge">Demo intelligence</span></div>
+              <div class="suggested-questions"><button type="button" data-question="Which city needs urgent traffic action?">Traffic priority</button><button type="button" data-question="Show air quality evidence for Delhi">Air evidence</button><button type="button" data-question="What is the energy risk in Bengaluru?">Energy risk</button></div>
+              <div id="assistantMessages" class="assistant-messages"><p>Ask about traffic, pollution, energy, or a covered city.</p></div>
+              <div id="assistantEvidence" class="assistant-evidence"></div>
+              <form id="assistantForm" class="assistant-form"><label>Question<input name="question" placeholder="What needs attention in Delhi?" required /></label><button id="voiceInputButton" class="button button-ghost" type="button" aria-label="Start voice input">Voice</button><button class="button button-primary" type="submit">Ask assistant</button></form>
+            </article>
+            <article class="panel twin-panel" id="digital-twin">
+              <div class="panel-head"><div><p class="eyebrow">Digital twin</p><h3>Scenario Simulator</h3></div><span class="section-badge">What-if model</span></div>
+              <form id="twinForm"><label>Traffic increase %<input name="traffic_change" type="number" value="20" min="-50" max="100" /></label><label>Heavy rainfall %<input name="rain" type="number" value="30" min="0" max="100" /></label><label>Festival crowd<input name="event_size" type="number" value="12000" min="0" /></label><label>Power demand change %<input name="power_change" type="number" value="10" min="-40" max="100" /></label><label>Water shortage %<input name="water_shortage" type="number" value="5" min="0" max="100" /></label><button class="button button-ghost" type="submit">Run simulation</button></form>
+              <div id="twinResult" class="result-box">Adjust assumptions and run a simulated city scenario.</div>
+              <div id="twinComparison" class="comparison-grid"></div>
+            </article>
+          </div>
+          <div class="module-grid" id="smart-modules">
+            <article class="module-card" id="module-traffic"><span>Traffic intelligence</span><strong id="trafficForecast">Loading</strong><p id="trafficModuleDetail">Congestion forecast, vehicle density, and alternate routes.</p></article>
+            <article class="module-card" id="module-air"><span>Air quality</span><strong id="pollutionForecast">Loading</strong><p id="airModuleDetail">PM2.5, AQI trends, and pollution hotspots.</p></article>
+            <article class="module-card" id="module-water"><span>Water management</span><strong id="waterForecast">Loading</strong><p id="waterModuleDetail">Leak detection, tank levels, and consumption monitoring.</p></article>
+            <article class="module-card" id="module-energy"><span>Energy management</span><strong id="energyForecast">Loading</strong><p id="energyModuleDetail">Power consumption, peak demand, and load forecasting.</p></article>
+            <article class="module-card" id="module-disaster"><span>Disaster management</span><strong id="responseTeams">Loading</strong><p id="disasterModuleDetail">Flood alerts, weather risks, and response coordination.</p></article>
+            <article class="module-card" id="module-parking"><span>Smart parking</span><strong id="parkingSpaces">Loading</strong><p id="parkingModuleDetail">Availability, occupancy, and vehicle entry.</p></article>
+          </div>
+          <article class="panel forecast-panel"><div class="panel-head"><div><p class="eyebrow">Prediction engine</p><h3>City Forecast Confidence</h3></div><span class="section-badge">Next 2 hours</span></div><div id="forecastGrid" class="forecast-grid"></div></article>
+          <div class="intelligence-grid">
+            <article class="panel"><div class="panel-head"><div><p class="eyebrow">AI anomaly detection</p><h3>Evidence & Recommendations</h3></div><span class="section-badge">High priority</span></div><div id="anomalyGrid" class="anomaly-grid"></div></article>
+            <article class="panel"><div class="panel-head"><div><p class="eyebrow">Performance</p><h3>City Ranking</h3></div><span class="section-badge">Composite score</span></div><div id="rankingTable" class="ranking-table"></div></article>
+          </div>
+          <article class="panel emergency-panel" id="emergency-response"><div class="panel-head"><div><p class="eyebrow">Emergency response</p><h3>Dispatch & Incident Control</h3></div><button id="downloadForensicButton" class="button button-ghost" type="button">Download PDF report</button></div><div id="emergencyGrid" class="emergency-grid"></div></article>
+        </section>
+
+        <section class="platform-section" id="city-analytics">
+          <div class="section-heading"><div><p class="eyebrow">UrbanOS platform expansion</p><h2>City Services & Intelligence Matrix</h2></div><p>Operational prototypes are backed by Flask APIs and clearly marked as simulated where municipal feeds are unavailable.</p></div>
+          <div class="platform-module-grid">
+            <article class="platform-module" id="module-waste"><span>Waste management</span><strong id="wasteHeadline">Loading</strong><p id="wasteDetail">Collection, bins, recycling, and route efficiency.</p></article>
+            <article class="platform-module" id="module-transport"><span>Public transport</span><strong id="transportHeadline">Loading</strong><p id="transportDetail">Fleet activity, punctuality, passengers, and delays.</p></article>
+            <article class="platform-module" id="module-roads"><span>Road infrastructure</span><strong id="roadsHeadline">Loading</strong><p id="roadsDetail">Road health, potholes, repairs, and signals.</p></article>
+            <article class="platform-module" id="module-safety"><span>Public safety</span><strong id="safetyHeadline">Loading</strong><p id="safetyDetail">Patrols, cameras, safe zones, and response time.</p></article>
+            <article class="platform-module" id="flood-prediction"><span>Flood prediction</span><strong id="floodHeadline">Loading</strong><p id="floodDetail">Rainfall, drainage condition, risk, and confidence.</p></article>
+            <article class="platform-module" id="noise-monitoring"><span>Noise monitoring</span><strong id="noiseHeadline">Loading</strong><p id="noiseDetail">Average decibels, hotspots, and quiet zones.</p></article>
+          </div>
+          <div class="platform-split">
+            <article class="panel" id="root-cause"><div class="panel-head"><div><p class="eyebrow">AI root cause analysis</p><h3>Probable Causes & Evidence</h3></div><span class="section-badge">Explainable AI</span></div><div id="rootCauseGrid" class="root-cause-grid"></div></article>
+            <article class="panel" id="recommendation-agent"><div class="panel-head"><div><p class="eyebrow">Recommendation agent</p><h3>Ranked City Actions</h3></div><span class="section-badge">Evidence based</span></div><div id="agentRecommendations" class="recommendation-stack"></div></article>
+          </div>
+          <div class="platform-split citizen-split">
+            <article class="panel" id="grievance-portal"><div class="panel-head"><div><p class="eyebrow">Citizen grievance portal</p><h3>Submit & Track a Concern</h3></div><span class="section-badge">Persistent records</span></div><form id="grievanceForm" class="grievance-form"><label>Name<input name="citizen_name" required /></label><label>Category<select name="category"><option>Road</option><option>Waste</option><option>Water</option><option>Electricity</option><option>Safety</option><option>Flooding</option></select></label><label>Location<input name="location" required /></label><label class="span-two">Description<textarea name="description" required placeholder="Describe the issue and any immediate risk..."></textarea></label><button class="button button-primary span-two" type="submit">Submit grievance</button></form><div id="grievanceStatus" class="result-box">Citizen submissions are stored in the local incident database.</div><div id="grievanceList" class="grievance-list"></div></article>
+            <div class="citizen-stack"><article class="panel" id="citizen-alerts"><div class="panel-head"><div><p class="eyebrow">Citizen alerts</p><h3>Public Advisory Feed</h3></div></div><div id="citizenAlertList" class="citizen-alert-list"></div></article><article class="panel" id="public-services"><div class="panel-head"><div><p class="eyebrow">Public services</p><h3>Service Directory</h3></div></div><div id="publicServiceGrid" class="service-grid"></div></article></div>
+          </div>
+          <div class="platform-split">
+            <article class="panel" id="predictive-maintenance"><div class="panel-head"><div><p class="eyebrow">Predictive maintenance</p><h3>Infrastructure Asset Risk</h3></div><span class="section-badge">Priority queue</span></div><div id="maintenanceGrid" class="maintenance-grid"></div></article>
+            <article class="panel" id="sustainability-score"><div class="panel-head"><div><p class="eyebrow">Sustainability</p><h3>City Sustainability Score</h3></div><span class="section-badge">Composite index</span></div><div class="sustainability-orb"><strong id="sustainabilityScore">--</strong><span>/ 100</span></div><div id="sustainabilityMetrics" class="sustainability-metrics"></div></article>
+          </div>
+          <article class="panel twin-city-panel" id="twin-city-3d"><div class="panel-head"><div><p class="eyebrow">3D digital twin</p><h3>Urban Infrastructure Scene</h3></div><span class="section-badge">Interactive concept model</span></div><div class="twin-city-scene" id="twinCityScene"><div class="twin-ground"></div><i style="--x:12%;--y:18%;--h:72px"></i><i style="--x:29%;--y:34%;--h:108px"></i><i style="--x:47%;--y:12%;--h:88px"></i><i style="--x:66%;--y:38%;--h:128px"></i><i style="--x:82%;--y:19%;--h:92px"></i><span class="twin-road road-a"></span><span class="twin-road road-b"></span><div class="twin-scan"></div></div><p class="twin-caption">Drag across the scene to rotate the conceptual city layer. Simulation values remain dataset-derived.</p></article>
+        </section>
+
+        <section class="capstone-section" id="capstone">
+          <div class="section-heading">
+            <div><p class="eyebrow">Project evidence</p><h2>Capstone Validation Center</h2></div>
+            <button id="exportReportButton" class="button button-ghost" type="button"><span>⇩</span> Export summary</button>
+          </div>
+          <div class="capstone-grid">
+            <article class="panel capstone-hero">
+              <div class="panel-head"><div><p class="eyebrow">Final year project</p><h3>AI Smart City Digital Brain</h3></div><span class="section-badge" id="readinessScore">Model status pending</span></div>
+              <p id="capstoneObjective">Loading project objective...</p>
+              <div id="impactGrid" class="impact-grid"></div>
+            </article>
+            <article class="panel architecture-panel">
+              <div class="panel-head"><div><p class="eyebrow">System design</p><h3>Architecture Flow</h3></div><span class="section-badge">End to end</span></div>
+              <div id="architectureFlow" class="architecture-flow"></div>
+            </article>
+          </div>
+          <div class="capstone-grid capstone-grid-wide">
+            <article class="panel validation-panel">
+              <div class="panel-head"><div><p class="eyebrow">Model proof</p><h3>AI Modules & Validation</h3></div><span class="section-badge">ML pipeline</span></div>
+              <div id="moduleValidationGrid" class="module-validation-grid"></div>
+            </article>
+            <article class="panel scope-panel">
+              <div class="panel-head"><div><p class="eyebrow">Evaluation scope</p><h3>Coverage & Model Validation</h3></div><span class="section-badge">Dataset prototype</span></div>
+              <ul id="capstoneStrengths" class="capstone-strengths"></ul>
+              <div id="reportStatus" class="result-box">Capstone summary can be exported for documentation.</div>
+            </article>
+          </div>
+        </section>
+
+        <section class="insight-grid" id="intelligence">
+          <article class="panel chart-panel"><div class="panel-head"><div><p class="eyebrow">Model distribution</p><h3>Prediction Overview</h3></div><span class="section-badge">Training dataset</span></div><div class="chart-wrap"><canvas id="overviewChart"></canvas></div></article>
+          <article class="panel recommendation-panel"><div class="panel-head"><div><p class="eyebrow">Decision support</p><h3>Recommended Actions</h3></div><span class="ai-badge">✦ AI ranked</span></div><ul id="recommendationList" class="recommendation-list"><li>Loading recommendations...</li></ul></article>
+          <article class="panel alert-panel" id="alerts"><div class="panel-head"><div><p class="eyebrow">Response queue</p><h3>City Alerts</h3></div><span class="alert-count" id="alertCount">-- open</span></div><div id="alertTicker" class="alert-ticker"></div></article>
+        </section>
+
+        <div id="system-status"></div>
+        <section class="lower-grid">
+          <article class="panel api-panel"><div class="panel-head"><div><p class="eyebrow">Backend telemetry</p><h3>API Console</h3></div><div class="panel-tools"><button id="toggleApiButton" class="mini-button text-button" type="button">Collapse</button><span class="status-label">Polling every 30s</span></div></div><div class="console-status"><span>GET /health</span><strong id="statusBox">Waiting for backend...</strong></div><pre id="result">Initializing connection...</pre></article>
+          <article class="panel history-panel" id="history"><div class="panel-head"><div><p class="eyebrow">Audit trail</p><h3>Prediction History</h3></div><span class="section-badge">Recent activity</span></div><div class="table-wrap"><table id="historyTable"><thead><tr><th>Module</th><th>Area</th><th>Prediction</th><th>Timestamp</th></tr></thead><tbody><tr><td colspan="4">Loading recent activity...</td></tr></tbody></table></div></article>
+        </section>
+      </main>
+    </div>
+  </div>
+  <div class="mobile-overlay" id="mobileOverlay"></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
